@@ -1,0 +1,10 @@
+@use "../variables/sizes" as size;
+@use "../variables/mixins" as mixin;
+
+.contacts {
+  &__list {
+    @include mixin.flex-center();
+
+    gap: size.$size--16;
+  }
+}

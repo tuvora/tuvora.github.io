@@ -1,0 +1,105 @@
+@use "../variables/palette" as palette;
+@use "../variables/sizes" as size;
+@use "../variables/animations" as animation;
+@use "../variables/mixins" as mixin;
+
+.card {
+  @include mixin.flex-center();
+
+  background-color: palette.$white-color;
+  border-bottom: 1px solid palette.$secondary-color-light;
+  border-radius: size.$size--12;
+  box-shadow: 0 size.$size--2 size.$size--4 rgb(0 0 0 / 10%);
+  column-gap: size.$size--12;
+  flex-direction: row-reverse;
+  height: 100%;
+  padding-block: size.$size--16 size.$size--24;
+  padding-inline: size.$size--16;
+
+  &:not(.card--type--link) {
+    padding-inline-end: size.$size--32;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    @include mixin.text-style(size.$size--18, palette.$black-color, 500);
+
+    width: fit-content;
+  }
+
+  &__text {
+    @include mixin.text-style(size.$size--16, palette.$text-color);
+
+    padding-block-start: size.$size--8;
+  }
+
+  &__icon {
+    @include mixin.flex-center();
+
+    fill: currentcolor;
+    flex-shrink: 0;
+    grid-row: 1 / span 2;
+    height: size.$size--48;
+    width: size.$size--48;
+  }
+
+  &--type {
+    &--link {
+      .card__title {
+        border-bottom: 1px solid transparent;
+        color: palette.$accent-color-dark;
+      }
+
+      @media (hover: hover) {
+        &:hover .card__title {
+          border-bottom-color: inherit;
+        }
+      }
+    }
+  }
+
+  @media (hover: hover) {
+    @include animation.transition();
+
+    &__text {
+      color: palette.$text-color-light;
+    }
+
+    &:hover {
+      background-color: palette.$secondary-color-light;
+      box-shadow: 0 size.$size--4 size.$size--8 rgb(0 0 0 / 15%);
+      transform: translateY(-2px);
+
+      .card__icon {
+        color: palette.$success-color;
+      }
+
+      .card__text {
+        color: palette.$text-color;
+      }
+    }
+  }
+
+  &:focus-visible,
+  &:active {
+    background-color: palette.$secondary-color-light;
+    box-shadow: 0 size.$size--4 size.$size--8 rgb(0 0 0 / 30%);
+
+    .card__text {
+      color: palette.$text-color;
+    }
+  }
+
+  @media (width <= 767px) {
+    column-gap: size.$size--24;
+    justify-content: flex-end;
+  }
+
+  @media (width <= 480px) {
+    justify-content: flex-end;
+  }
+}

@@ -1,0 +1,29 @@
+@keyframes fade-in {
+  from {
+    opacity: 0%;
+  }
+
+  to {
+    opacity: 100%;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0%;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 100%;
+    transform: translateY(0);
+  }
+}
+
+@mixin fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@mixin transition() {
+  transition: all 0.3s ease-in-out;
+}

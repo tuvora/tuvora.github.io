@@ -1,0 +1,26 @@
+@use "../variables/palette" as palette;
+@use "../variables/sizes" as size;
+@use "../variables/mixins" as mixin;
+
+.page-footer {
+  @include mixin.flex-center();
+
+  background-color: palette.$primary-color-dark;
+  flex-direction: column;
+  padding: size.$size--24;
+
+  &__text {
+    @include mixin.text-style(size.$size--18, palette.$text-color-light);
+
+    margin-block-end: size.$size--16;
+    text-align: center;
+  }
+
+  &__socials {
+    @include mixin.flex-center();
+
+    flex-wrap: wrap;
+    gap: size.$size--20;
+    margin-block-start: size.$size--8;
+  }
+}

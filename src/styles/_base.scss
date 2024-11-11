@@ -1,0 +1,101 @@
+@use "./variables/fonts" as font;
+@use "./variables/palette" as palette;
+@use "./variables/sizes" as size;
+@use "./variables/mixins" as mixin;
+
+html {
+  font-size: 10px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: palette.$background-color;
+  font-family: font.$content-font;
+  line-height: 1.4;
+
+  @include mixin.text-style(size.$size--16, palette.$text-color);
+}
+
+.page {
+  border-radius: size.$size--16;
+  margin: 0 auto;
+  max-width: 1024px;
+  padding: size.$size--24;
+}
+
+header {
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+}
+
+footer {
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+}
+
+picture {
+  display: inline-flex;
+}
+
+svg,
+img {
+  display: inline-flex;
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  outline: none;
+  text-decoration: none;
+
+  @include mixin.text-style(size.$size--16, palette.$primary-color, 500);
+}
+
+.sr-only {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.page-content {
+  color: palette.$black-color;
+}
+
+@media (width <= 480px) {
+  html {
+    font-size: 9px;
+  }
+
+  .page {
+    padding: 0;
+  }
+
+  header {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  footer {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}

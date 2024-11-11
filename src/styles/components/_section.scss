@@ -1,0 +1,89 @@
+@use "../variables/fonts" as font;
+@use "../variables/palette" as palette;
+@use "../variables/sizes" as size;
+@use "../variables/mixins" as mixin;
+@use "../variables/animations" as animation;
+
+.section {
+  background-color: palette.$white-color;
+  box-shadow: 0 size.$size--2 size.$size--4 rgb(0 0 0 / 10%);
+  margin-inline: auto;
+  max-width: 100%;
+  padding: size.$size--16;
+
+  &:nth-of-type(odd) {
+    background-color: palette.$secondary-color-light;
+  }
+
+  &:not(:first-of-type) {
+    border-top-left-radius: size.$size--8;
+    border-top-right-radius: size.$size--8;
+  }
+
+  &:not(:last-of-type) {
+    border-bottom-left-radius: size.$size--8;
+    border-bottom-right-radius: size.$size--8;
+    margin-block-end: size.$size--24;
+  }
+
+  &__title {
+    @include mixin.text-style(size.$size--24, palette.$highlight-color, 700);
+
+    border-bottom: size.$size--2 solid palette.$accent-color;
+    font-family: font.$title-font;
+    margin-block-end: size.$size--8;
+    padding-block-end: size.$size--8;
+
+    @media (hover: hover) {
+      @include animation.transition();
+
+      border-image: linear-gradient(90deg, palette.$accent-color, palette.$accent-color-dark) 1;
+
+      &:hover {
+        border-image: linear-gradient(90deg, palette.$accent-color-dark, palette.$accent-color) 1;
+        color: palette.$accent-color-dark;
+      }
+    }
+  }
+
+  &__subtitle {
+    @include mixin.text-style(size.$size--20, palette.$text-color, 600);
+
+    margin-block-end: size.$size--8;
+  }
+
+  &__text {
+    align-items: center;
+    display: inline-flex;
+    line-height: 1.6;
+
+    @include mixin.text-style(size.$size--16, palette.$text-color);
+
+    svg {
+      color: palette.$primary-color;
+      flex-shrink: 0;
+      height: size.$size--40;
+      margin-inline-end: size.$size--8;
+      width: size.$size--40;
+    }
+  }
+
+  &__list {
+    color: palette.$highlight-color;
+    margin: size.$size--48;
+  }
+
+  @media (hover: hover) {
+    @include animation.transition();
+
+    &:hover {
+      box-shadow: 0 size.$size--4 size.$size--8 rgb(0 0 0 / 15%);
+    }
+  }
+
+  @media (width <= 768px) {
+    &__list {
+      margin: size.$size--24;
+    }
+  }
+}

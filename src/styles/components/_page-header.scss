@@ -1,0 +1,82 @@
+@use "../variables/fonts" as font;
+@use "../variables/palette" as palette;
+@use "../variables/sizes" as size;
+@use "../variables/mixins" as mixin;
+@use "../variables/animations" as animation;
+
+.page-header {
+  align-items: center;
+  background-color: palette.$primary-color;
+  display: grid;
+  gap: size.$size--16;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  padding-block: size.$size--32;
+  padding-inline: size.$size--24;
+  position: relative;
+  text-align: center;
+
+  &__head {
+    display: grid;
+    gap: size.$size--20 size.$size--32;
+    grid-template-columns: 16rem minmax(32rem, 1fr);
+    margin-inline: auto;
+    padding-inline-start: size.$size--40;
+  }
+
+  &__title {
+    @include mixin.text-style(size.$size--32, palette.$background-color, 700);
+
+    align-self: flex-end;
+    font-family: font.$title-font;
+    text-shadow: 0 size.$size--2 size.$size--4 rgb(0 0 0 / 30%);
+
+    @media (hover: hover) {
+      @include animation.fade-in;
+      @include animation.transition();
+
+      &:hover {
+        color: palette.$accent-color;
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  &__subtitle {
+    @include mixin.text-style(size.$size--18, palette.$text-color-light, 500);
+
+    opacity: 90%;
+  }
+
+  &__image {
+    grid-row: 1 / span 2;
+    height: auto;
+
+    picture,
+    img {
+      border-radius: size.$size--8;
+      width: 100%;
+    }
+  }
+
+  &__contacts {
+    grid-column: 1 / -1;
+    margin-block-start: size.$size--12;
+  }
+
+  &__print {
+    grid-column: 2 / 3;
+    place-self: start end;
+  }
+
+  @media (width <= 767px) {
+    &__head {
+      grid-template-columns: 1fr;
+    }
+
+    &__image {
+      margin-inline: auto;
+      width: 20rem;
+    }
+  }
+}

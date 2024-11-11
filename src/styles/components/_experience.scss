@@ -1,0 +1,112 @@
+@use "../variables/palette" as palette;
+@use "../variables/sizes" as size;
+@use "../variables/mixins" as mixin;
+@use "../variables/animations" as animation;
+
+.experience {
+  background-color: palette.$white-color;
+  border-radius: size.$size--8;
+  box-shadow: 0 size.$size--2 size.$size--4 rgb(0 0 0 / 10%);
+  display: flex;
+  flex-direction: column;
+  margin-block-end: size.$size--16;
+  padding: size.$size--20;
+  row-gap: size.$size--20;
+
+  &__title {
+    align-items: baseline;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  &__company {
+    @include mixin.text-style(size.$size--18, palette.$primary-color-dark, 700);
+
+    text-transform: uppercase;
+  }
+
+  &__role {
+    @include mixin.text-style(size.$size--20, palette.$primary-color-dark, 600);
+
+    opacity: 75%;
+  }
+
+  &__timeline {
+    @include mixin.text-style(size.$size--12, palette.$gray-color);
+
+    display: flex;
+    justify-content: space-between;
+    opacity: 40%;
+
+    time:first-child::after {
+      content: "/";
+    }
+  }
+
+  &__text {
+    @include mixin.text-style(size.$size--16, palette.$text-color);
+  }
+
+  &__achievements,
+  &__skills {
+    dt {
+      align-items: center;
+      color: palette.$accent-color-dark;
+      display: flex;
+      font-weight: 600;
+      margin-block-end: size.$size--8;
+      padding-block-end: size.$size--4;
+      position: relative;
+      text-transform: uppercase;
+
+      svg {
+        fill: currentcolor;
+        height: size.$size--20;
+        margin-inline-start: size.$size--8;
+        width: size.$size--20;
+      }
+
+      &::after {
+        background-color: palette.$accent-color;
+        bottom: 0;
+        content: "";
+        height: size.$size--2;
+        left: 0;
+        position: absolute;
+        width: size.$size--40;
+      }
+    }
+
+    dd {
+      align-items: center;
+      color: palette.$text-color;
+      display: flex;
+      margin-block-end: size.$size--4;
+      margin-inline-start: size.$size--16;
+
+      &::before {
+        color: palette.$accent-color;
+        content: "•";
+        margin-inline-end: size.$size--8;
+      }
+    }
+  }
+
+  @media (hover: hover) {
+    @include animation.transition();
+
+    background-color: palette.$secondary-color-light;
+
+    &:hover {
+      background-color: palette.$white-color;
+    }
+  }
+
+  @media (width <= 480px) {
+    &__company {
+      flex-grow: 1;
+      flex-shrink: 0;
+    }
+  }
+}

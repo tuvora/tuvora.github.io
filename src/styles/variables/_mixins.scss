@@ -1,0 +1,13 @@
+@use "./palette" as palette;
+
+@mixin text-style($size, $color: palette.$text-color, $weight: 400) {
+  color: $color;
+  font-size: $size;
+  font-weight: $weight;
+}
+
+@mixin flex-center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
