@@ -12,7 +12,7 @@ export default {
     path: path.resolve('dist'),
     filename: '[name].[contenthash].js',
     clean: true,
-    publicPath: './',
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -29,6 +29,13 @@ export default {
           'postcss-loader',
           'sass-loader',
         ],
+      },
+      {
+        test: /\.pdf$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/docs/[name][contenthash][ext]',
+        },
       },
       {
         test: /\.(png|jpg|jpeg)$/i,
@@ -79,6 +86,7 @@ export default {
       patterns: [
         { from: 'src/assets/fav', to: 'assets/fav' },
         { from: 'src/assets/img', to: 'assets/img' },
+        { from: 'src/assets/docs', to: 'assets/docs' },
       ],
     }),
   ],
