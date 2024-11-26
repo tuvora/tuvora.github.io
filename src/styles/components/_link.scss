@@ -37,13 +37,13 @@
     width: 100%;
   }
 
-  &:focus-within,
+  &:focus-visible,
   &:active {
     color: palette.$primary-color-dark;
     fill: currentcolor;
   }
 
-  &:focus-within {
+  &:focus-visible {
     box-shadow: 0 0 size.$size--8 rgba(palette.$accent-color, 0.3);
     transform: scale(1.05);
   }
@@ -83,7 +83,7 @@
     }
 
     &:hover,
-    &:focus-within,
+    &:focus-visible,
     &:active {
       &::before {
         opacity: 80%;
